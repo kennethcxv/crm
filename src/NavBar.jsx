@@ -9,18 +9,20 @@ import HubSpotLogo from "./assets/HubSpotLogo.png";
 
 const NavBar = () => {
   const utilityButtonSx = {
-    fontSize: 10,
+    fontSize: 11  ,
     fontWeight: 800,
+    textTransform: "none",
   };
 
-  
+
+
   return (
     <AppBar
       position="static"
       sx={{ bgcolor: "background.paper", color: "text.secondary" }}
     >
       <Toolbar sx={{ mx: 20 }}>
-        <Stack direction="row" spacing={1} sx={{ flexGrow: 1 }}>
+        <Stack direction="row" spacing={1} sx={{ flexGrow: 1, mb:2 }}>
           <Button
             sx={utilityButtonSx}
             startIcon={<LanguageOutlinedIcon />}
@@ -41,7 +43,7 @@ const NavBar = () => {
             Contact Sales
           </Button>
         </Stack>
-        <Stack direction="row">
+        <Stack direction="row" spacing={1} sx={{  mb:2 }} >
           <Button startIcon={<SearchOutlinedIcon />}></Button>
           <Button sx={utilityButtonSx}>Log in</Button>
           <Button sx={utilityButtonSx} endIcon={<KeyboardArrowDownIcon />}>
@@ -51,12 +53,12 @@ const NavBar = () => {
       </Toolbar>
 
       <Toolbar sx={{ mx: 20 }}>
-        <img src={HubSpotLogo} alt="HubSpotLogo" className="h-7 w-auto" />
-        <Stack direction="row" spacing={1} sx={{ flexGrow: 1 }}>
-          <Button endIcon={<KeyboardArrowDownIcon />}>Products</Button>
-          <Button endIcon={<KeyboardArrowDownIcon />}>Solutions</Button>
-          <Button>Pricing</Button>
-          <Button endIcon={<KeyboardArrowDownIcon />}>Resources</Button>
+        <img src={HubSpotLogo} alt="HubSpotLogo" className="h-7 mr-10 mb-5" />
+        <Stack direction="row" spacing={1} sx={{ flexGrow: 1, mb:2}}>
+          <Button sx={{fontWeight: 800, textTransform: "none",}} endIcon={<KeyboardArrowDownIcon />}>Products</Button>
+          <Button sx={{fontWeight: 800, textTransform: "none",}} endIcon={<KeyboardArrowDownIcon />}>Solutions</Button>
+          <Button sx={{fontWeight: 800, textTransform: "none",}} >Pricing</Button>
+          <Button sx={{fontWeight: 800, textTransform: "none",}} endIcon={<KeyboardArrowDownIcon />}>Resources</Button>
         </Stack>
         <Stack>
           <Button variant="contained" color="primary">

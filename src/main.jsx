@@ -11,7 +11,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#FF7A59", contrastText: "#FFFFFF" }, // CTA orange
+    primary: { main: "#ff4900", contrastText: "#FFFFFF" }, // CTA orange
     secondary: { main: "#33475B" }, // slate
     neutral: { main: "#000000" },
     text: { primary: "#ff4900", secondary: "#000000"},
