@@ -1,14 +1,14 @@
-import { AppBar, Toolbar,IconButton, Typography, Stack, Button, InputLabel, Select } from "@mui/material";
+import { AppBar, Toolbar,IconButton, Stack, Button } from "@mui/material";
+import { Link, Router, Link as RouterLink } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import ToggleOffOutlinedIcon from "@mui/icons-material/ToggleOffOutlined";
 import MessageOutlinedIcon from "@mui/icons-material/MessageOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import HubSpotLogo from "./assets/HubSpotLogo.png";
-import Resources from "./Resources";
-import { useState } from "react";
- 
+import HubSpotLogo from "../assets/HubSpotLogo.png";
+
+
 const NavBar = () => {
   const utilityButtonSx = {
     fontSize: 11.5,
@@ -19,19 +19,6 @@ const NavBar = () => {
     fontSize:15,
     fontWeight:800,
     textTransform:"none"
-  }
-
-  const [isResourceNavOpen,setIsResourceNavOpen] = useState(false)
-
-  const handleChange = () => {
-    setIsResourceNavOpen(!isResourceNavOpen) // sets the nav to True
-    console.log("The resource Nav is ", isResourceNavOpen)
-    if(isResourceNavOpen === true){
-      <Resources />
-    }
-    else(
-      console.log("Resource nav is not open")
-    )
   }
 
   return (
@@ -62,45 +49,58 @@ const NavBar = () => {
           </Button>
         </Stack>
         <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-          <IconButton
+          <IconButton 
             aria-label="Search"
             sx={{ p: 0.5, mr: 1 }}
           >
             <SearchOutlinedIcon />
           </IconButton>
-          <Button sx={utilityButtonSx}>Log in</Button>
-          <Button sx={utilityButtonSx} endIcon={<KeyboardArrowDownIcon />}>
-            About{" "}
+          <Button sx={utilityButtonSx} component={RouterLink} to="/login" >Log in</Button>
+          <Button sx={utilityButtonSx} component={RouterLink} to="/about" endIcon={<KeyboardArrowDownIcon  />}>
+            About
           </Button>
         </Stack>
       </Toolbar>
 
       <Toolbar sx={{ mx: 20 }}>
-        <img src={HubSpotLogo} alt="HubSpotLogo" className="h-7 ml-1 mr-10 mb-4" />
+        <Button component={RouterLink} to="/">
+          <img src={HubSpotLogo} alt="HubSpotLogo" className="h-7 ml-1 mr-10 mb-4" />
+        </Button>
+        
         <Stack direction="row" spacing={1} sx={{ flexGrow: 1, mb: 2 }}>
           <Button
             sx={navBarSx}
             endIcon={<KeyboardArrowDownIcon />}
+            to="/products"
+            component={RouterLink}
           >
             Products
+            
           </Button>
           <Button
             sx={navBarSx}
             endIcon={<KeyboardArrowDownIcon />}
+            to="/solutions"
+            component={RouterLink}
           >
             Solutions
           </Button>
-          <Button sx={navBarSx}>
+          <Button sx={navBarSx}
+          to="/pricing"
+          component={RouterLink}>
             Pricing
           </Button>
           <Button
             sx={navBarSx}
             endIcon={<KeyboardArrowDownIcon />}
-            onClick={handleChange}>Resources
+            to="/resources"
+            component={RouterLink}
+            >
+            Resources
           </Button>
         </Stack>
         <Stack >
-          <Button sx={{textTransform:"none", mb:2,fontWeight:800, height: 40,borderRadius:2,}} variant="contained" color="primary">
+          <Button component={RouterLink} to="/free-crm" sx={{textTransform:"none", mb:2,fontWeight:800, height: 40,borderRadius:2,}} variant="contained" color="primary">
             Get free CRM
           </Button>
         </Stack>

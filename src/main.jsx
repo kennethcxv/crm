@@ -1,13 +1,18 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.jsx";
-import { BrowserRouter, Routes, Route } from "react-router";
-import Contacts from "./Contacts.jsx";
-import NavBar from "./NavBar.jsx";
-
+import App from "./app/App.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar.jsx";
+import Pricing from "./pages/Pricing.jsx";
+import Products from "./pages/Products.jsx"
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Solutions from "./pages/Solutions.jsx";
+import Resources from "./pages/Resources.jsx";
+import FreeCrm from "./pages/FreeCRM.jsx";
+import Login from "./pages/Login.jsx";
+import About from "./pages/About.jsx";
 
 const theme = createTheme({
   palette: {
@@ -35,7 +40,14 @@ createRoot(document.getElementById("root")).render(
         <NavBar />
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="contacts" element={<Contacts />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/free-crm" element={<FreeCrm />} />
+          <Route path="/login" element={<Login />}/>
+          <Route path="/about" element={<About />}/>
+          
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
