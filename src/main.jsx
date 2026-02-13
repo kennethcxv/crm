@@ -16,13 +16,13 @@ import About from "./pages/About.jsx";
 import ContactList from "./pages/ContactList.jsx";
 import MainLayout from "./Layouts/MainLayout.jsx";
 
-const theme = createTheme({
+const theme = createTheme({ 
   palette: {
     primary: { main: "#ff4900", contrastText: "#FFFFFF" }, // CTA orange
     secondary: { main: "#33475B" }, // slate
     neutral: { main: "#000000" },
     text: { primary: "#ff4900", secondary: "#000000" },
-    background: { default: "#FFFFFF", paper: "#FFFFFF" },
+    background: { primary:"#ff4900", default: "#FFFFFF", paper: "#FFFFFF" },
     divider: "#E5E7EB",
   },
   components: {
