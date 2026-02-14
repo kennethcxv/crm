@@ -18,9 +18,10 @@ const CreateContactListForm = () => {
     firstName: "",
     lastName: "",
     phoneNumber: "",
-    leadSource: "",
-    jobTitle: "",
-    leadStatus: "",
+    companyName: "",
+    lifeCycleStage: "",
+    contactOwner: "",
+    notes:"",
   };
 
   const [inputs, setInputs] = useState(initialInputs);
@@ -39,10 +40,8 @@ const CreateContactListForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
     setInputsArr([...inputsArr, inputs]);
     setInputs(initialInputs);
-    console.log(inputsArr);
   };
 
   return (
@@ -97,6 +96,7 @@ const CreateContactListForm = () => {
                   label="Please enter your email"
                   variant="outlined"
                   value={inputs.email}
+                  type="email"
                   onChange={(e) =>
                     setInputs({ ...inputs, email: e.target.value })
                   }
@@ -131,6 +131,7 @@ const CreateContactListForm = () => {
                 <TextField
                   label="Please enter your Phone Number"
                   variant="outlined"
+                  type="tel"
                   sx={TextFieldStyling}
                   value={inputs.phoneNumber}
                   onChange={(e) =>
@@ -139,42 +140,55 @@ const CreateContactListForm = () => {
                 />
               </Stack>
               <Stack>
-                <Typography sx={textStyling}>Lead Source *</Typography>
+                <Typography sx={textStyling}>Company Name *</Typography>
                 <TextField
-                  label="Please enter your Lead Source"
+                  label="Please enter your Company Name"
                   variant="outlined"
                   sx={TextFieldStyling}
-                  value={inputs.leadSource}
+                  value={inputs.companyName}
                   onChange={(e) =>
-                    setInputs({ ...inputs, leadSource: e.target.value })
+                    setInputs({ ...inputs, companyName: e.target.value })
                   }
                 />
               </Stack>
               <Stack>
-                <Typography sx={textStyling}>Job title</Typography>
+                <Typography sx={textStyling}>Lifecycle stage</Typography>
                 <TextField
-                  label="Please enter your Job title"
+                  label="Please enter your Lifecycle stage"
                   variant="outlined"
                   sx={TextFieldStyling}
-                  value={inputs.jobTitle}
+                  value={inputs.lifeCycleStage}
                   onChange={(e) =>
-                    setInputs({ ...inputs, jobTitle: e.target.value })
+                    setInputs({ ...inputs, lifeCycleStage: e.target.value })
                   }
                 />
               </Stack>
               <Stack>
-                <Typography sx={textStyling}>Lead status *</Typography>
+                <Typography sx={textStyling}>Contact Owner *</Typography>
                 <TextField
-                  label="Please enter your Lead status"
+                  label="Please enter your Contact Owner"
                   variant="outlined"
                   sx={TextFieldStyling}
-                  value={inputs.leadStatus}
+                  value={inputs.contactOwner}
                   onChange={(e) =>
-                    setInputs({ ...inputs, leadStatus: e.target.value })
+                    setInputs({ ...inputs, contactOwner: e.target.value })
                   }
                 />
               </Stack>
-              <Button type="submit">Submit</Button>
+              <Stack>
+                <Typography sx={textStyling}>Notes</Typography>
+                <TextField
+                  label="Please enter your Notes"
+                  variant="outlined"
+                  sx={TextFieldStyling}
+                  value={inputs.notes}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, notes: e.target.value })
+                  }
+                />
+              </Stack>
+              <Button sx={{mt:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
+              <Button sx={{mt:5}} variant="outlined">Cancel</Button>
             </form>
             {inputsArr.map((items) => {
               return (
@@ -184,9 +198,9 @@ const CreateContactListForm = () => {
                     {items.firstName}
                     {items.lastName}
                     {items.phoneNumber}
-                    {items.leadSource}
-                    {items.jobTitle}
-                    {items.leadStatus}
+                    {items.companyName}
+                    {items.lifeCycleStage}
+                    {items.contactOwner}
                   </p>
                 </>
               );
