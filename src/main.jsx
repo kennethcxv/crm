@@ -15,11 +15,12 @@ import Login from "./pages/Login.jsx";
 import About from "./pages/About.jsx";
 import ContactList from "./pages/ContactList.jsx";
 import MainLayout from "./Layouts/MainLayout.jsx";
+import CreateContactListForm from "./pages/CreateContactListForm.jsx";
 
 const theme = createTheme({ 
   palette: {
     primary: { main: "#ff4900", contrastText: "#FFFFFF" }, // CTA orange
-    secondary: { main: "#33475B" }, // slate
+    secondary: { main: "#33475B", secondary:"#f6f5fa" }, // slate
     neutral: { main: "#000000" },
     text: { primary: "#ff4900", secondary: "#000000" },
     background: { primary:"#ff4900", default: "#FFFFFF", paper: "#FFFFFF" },
@@ -52,6 +53,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/about" element={<About />} />
           </Route>
           <Route path="/contact-list" element={<ContactList />} />
+          <Route path="/contact-list-form" element={<CreateContactListForm />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
