@@ -5,6 +5,8 @@ import {
   Typography,
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import CreateContactListForm from "./CreateContactListForm";
+import { useState } from "react";
 
 // Steps
 // We want to make it so when the user clicks on Add Contact
@@ -16,13 +18,16 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // Step 3: WE should probably use a drawer for this situiation.
 
 const ContactList = () => {
-  // const [open,isopen] = useState(false)
 
-  // const handleListForm = () => {
-  //     isopen(true)
-  //     console.log("This is open", open)
+  const [open,setOpen] = useState(false) // State Variable basically saying that the form is open or not
 
-  // }
+
+  const handleFormOpen = () => {
+    setOpen(true)
+  }
+  const handleFormClose = () => {
+    setOpen(false)
+  }
 
   return (
     <Stack mt={6} direction="row" justifyContent="space-between" mx={5}>
@@ -47,9 +52,11 @@ const ContactList = () => {
           color="primary"
           sx={{ textTransform: "none", bgcolor: "primary.main" }}
           variant="contained"
+          onClick={handleFormOpen}
         >
           Add Contact
         </Button>
+        <CreateContactListForm open={open} onClose={handleFormClose} /> 
       </Stack>
     </Stack>
   );

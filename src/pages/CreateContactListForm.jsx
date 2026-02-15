@@ -10,8 +10,10 @@ import { useState } from "react";
 
 // We make an input state vaiable for each then push it into the array and show it
 
-const CreateContactListForm = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+// How to make Cancel button work
+// When the user clicks on the cancel button it just props the onClose prop thasts it
+
+const CreateContactListForm = ({open, onClose}) => {
   const [inputsArr, setInputsArr] = useState([]);
   const initialInputs = { // we set it to initial inputs so we can clear the inputs after being used
     email: "",
@@ -47,18 +49,11 @@ const CreateContactListForm = () => {
   return (
     //Anchor is a prop which controls the direction the sidebar opens
     <>
-      <Button
-        size="large"
-        color="primary"
-        onClick={() => setIsDrawerOpen(true)}
-      >
-        Contact List Button
-      </Button>
       <Drawer
         PaperProps={{ sx: { width: 700 } }}
         anchor="right"
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
+        open={open}
+        onClose={onClose}
       >
         {/* We are assigning isDrawerOpen called open */}
         {/* Everything in here is the drawer content */}
@@ -188,7 +183,7 @@ const CreateContactListForm = () => {
                 />
               </Stack>
               <Button sx={{mt:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
-              <Button sx={{mt:5}} variant="outlined">Cancel</Button>
+              <Button sx={{mt:5}} onClick={onClose} variant="outlined">Cancel</Button>
             </form>
             {inputsArr.map((items) => {
               return (
