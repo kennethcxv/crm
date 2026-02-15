@@ -5,8 +5,10 @@ import {
   Button,
   Stack,
   TextField,
+  IconButton,
 } from "@mui/material";
 import { useState } from "react";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 // We make an input state vaiable for each then push it into the array and show it
 
@@ -58,10 +60,16 @@ const CreateContactListForm = ({open, onClose}) => {
         {/* We are assigning isDrawerOpen called open */}
         {/* Everything in here is the drawer content */}
         <Box>
-          <Box pt={2} pb={2} sx={{ backgroundColor: "primary.main" }}>
+          <Box pt={2} pb={2} sx={{ display:"flex", justifyContent:"space-between", backgroundColor: "primary.main" }}>
             <Typography sx={{ px: 5 }} variant="h6" color="white">
               Create Contact
             </Typography>
+            <IconButton sx={{mr:4}} onClick={onClose}>
+                <CloseOutlinedIcon />
+            </IconButton>
+
+
+            
           </Box>
           <Stack
             sx={{
@@ -76,6 +84,7 @@ const CreateContactListForm = ({open, onClose}) => {
                 fontWeight: 600,
                 justifyContent: "right",
                 direction: "row",
+                mr:3,
               }}
             >
               Edit this form
@@ -182,8 +191,8 @@ const CreateContactListForm = ({open, onClose}) => {
                   }
                 />
               </Stack>
-              <Button sx={{mt:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
-              <Button sx={{mt:5}} onClick={onClose} variant="outlined">Cancel</Button>
+              <Button sx={{my:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
+              <Button sx={{my:5}} onClick={onClose} variant="outlined">Cancel</Button>
             </form>
             {inputsArr.map((items) => {
               return (
