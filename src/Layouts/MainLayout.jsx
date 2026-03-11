@@ -6,6 +6,7 @@ const MainLayout = () => {
     <>
       <NavBar />
       <Outlet />
+      {/* Outlet means the child so /solutions or /pricing depending on what is clicked */}
     </>
   );
 };

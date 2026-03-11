@@ -15,8 +15,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 // How to make Cancel button work
 // When the user clicks on the cancel button it just props the onClose prop thasts it
 
-const CreateContactListForm = ({open, onClose}) => {
-  const [inputsArr, setInputsArr] = useState([]);
+const CreateContactListForm = ({open, onClose, onAddContact}) => {
   const initialInputs = { // we set it to initial inputs so we can clear the inputs after being used
     email: "",
     firstName: "",
@@ -42,11 +41,12 @@ const CreateContactListForm = ({open, onClose}) => {
     "& .MuiInputBase-input": { color: "black" }, // All inputs while typed are colored black
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setInputsArr([...inputsArr, inputs]);
-    setInputs(initialInputs);
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  onAddContact(inputs);
+  setInputs(initialInputs);
+  onClose();
+};
 
   return (
     //Anchor is a prop which controls the direction the sidebar opens
@@ -194,21 +194,7 @@ const CreateContactListForm = ({open, onClose}) => {
               <Button sx={{my:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
               <Button sx={{my:5}} onClick={onClose} variant="outlined">Cancel</Button>
             </form>
-            {inputsArr.map((items) => {
-              return (
-                <>
-                  <p>
-                    {items.email}
-                    {items.firstName}
-                    {items.lastName}
-                    {items.phoneNumber}
-                    {items.companyName}
-                    {items.lifeCycleStage}
-                    {items.contactOwner}
-                  </p>
-                </>
-              );
-            })}
+
           </Box>
         </Box>
       </Drawer>

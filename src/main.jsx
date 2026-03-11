@@ -53,7 +53,6 @@ createRoot(document.getElementById("root")).render(
             <Route path="/about" element={<About />} />
           </Route>
           <Route path="/contact-list" element={<ContactList />} />
-          <Route path="/contact-list-form" element={<CreateContactListForm />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
