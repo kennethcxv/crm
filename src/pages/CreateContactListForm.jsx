@@ -15,6 +15,11 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 // How to make Cancel button work
 // When the user clicks on the cancel button it just props the onClose prop thasts it
 
+// We need to create input validation
+// What we need: We need input validation for when the user doesnt fill out a field
+// Step 1: We create a state variable since we are changing the UI
+// Step 2: We 
+
 const CreateContactListForm = ({open, onClose, onAddContact}) => {
   const initialInputs = { // we set it to initial inputs so we can clear the inputs after being used
     email: "",
@@ -28,6 +33,13 @@ const CreateContactListForm = ({open, onClose, onAddContact}) => {
   };
 
   const [inputs, setInputs] = useState(initialInputs);
+  const [inputValidation,setInputValidation] = useState({ // State Variable that holds each input with a bool
+    email: false,
+    firstName:false,
+    lastName:false,
+    companyName:false,
+    contactOwner:false,
+  })
 
   const textStyling = {
     textAlign: "left",
@@ -43,11 +55,36 @@ const CreateContactListForm = ({open, onClose, onAddContact}) => {
 
 const handleSubmit = (e) => {
   e.preventDefault();
+  const isValid = handleInputValidation();
+  if (!isValid) return;
   onAddContact(inputs);
   setInputs(initialInputs);
   onClose();
 };
 
+  const handleInputValidation = () => {
+    let newErrors = { // We create an Object that has the 
+      email: inputs.email === "",
+      firstName: inputs.firstName === "",
+      lastName: inputs.lastName === "",
+      companyName: inputs.companyName === "",
+      contactOwner: inputs.contactOwner === "",
+    }
+
+    setInputValidation(newErrors)
+
+if (
+  newErrors.email ||
+  newErrors.firstName ||
+  newErrors.lastName ||
+  newErrors.companyName ||
+  newErrors.contactOwner
+) {
+  return false;
+}
+return true;
+  }
+  
   return (
     //Anchor is a prop which controls the direction the sidebar opens
     <>
@@ -101,6 +138,9 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   value={inputs.email}
                   type="email"
+                  error={inputValidation.email}
+                  helperText={inputValidation.email ? "Email is required" : ""}
+
                   onChange={(e) =>
                     setInputs({ ...inputs, email: e.target.value })
                   }
@@ -113,6 +153,8 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.firstName}
+                  error={inputValidation.firstName}
+                  helperText={inputValidation.firstName ? "First Name is required" : ""}
                   onChange={(e) =>
                     setInputs({ ...inputs, firstName: e.target.value })
                   }
@@ -125,6 +167,9 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.lastName}
+                  error={inputValidation.lastName}
+                  helperText={inputValidation.lastName ? "Last Name is required" : ""}
+
                   onChange={(e) =>
                     setInputs({ ...inputs, lastName: e.target.value })
                   }
@@ -138,6 +183,7 @@ const handleSubmit = (e) => {
                   type="tel"
                   sx={TextFieldStyling}
                   value={inputs.phoneNumber}
+
                   onChange={(e) =>
                     setInputs({ ...inputs, phoneNumber: e.target.value })
                   }
@@ -150,6 +196,9 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.companyName}
+                  error={inputValidation.companyName}
+  helperText={inputValidation.companyName ? "Company Name is required" : ""}
+
                   onChange={(e) =>
                     setInputs({ ...inputs, companyName: e.target.value })
                   }
@@ -162,6 +211,7 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.lifeCycleStage}
+                  
                   onChange={(e) =>
                     setInputs({ ...inputs, lifeCycleStage: e.target.value })
                   }
@@ -174,6 +224,9 @@ const handleSubmit = (e) => {
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.contactOwner}
+                  error={inputValidation.contactOwner}
+  helperText={inputValidation.contactOwner ? "Contact Owner is required" : ""}
+
                   onChange={(e) =>
                     setInputs({ ...inputs, contactOwner: e.target.value })
                   }
