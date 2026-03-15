@@ -17,13 +17,16 @@ import ContactList from "./pages/ContactList.jsx";
 import MainLayout from "./Layouts/MainLayout.jsx";
 import CreateContactListForm from "./pages/CreateContactListForm.jsx";
 
-const theme = createTheme({ 
+const theme = createTheme({
   palette: {
     primary: { main: "#ff4900", contrastText: "#FFFFFF" }, // CTA orange
-    secondary: { main: "#33475B", secondary:"#f6f5fa" }, // slate
+    secondary: { main: "#33475B", secondary: "#f6f5fa" }, // slate
     neutral: { main: "#000000" },
     text: { primary: "#ff4900", secondary: "#000000" },
-    background: { primary:"#ff4900", default: "#FFFFFF", paper: "#FFFFFF" },
+    textLinks: { primary: "#59A0D6" },
+    tableBackground: { primary: "#FAFBFD" },
+    tableBorder: { primary: "#F7F9FB" },
+    background: { primary: "#ff4900", default: "#FFFFFF", paper: "#FFFFFF" },
     divider: "#E5E7EB",
   },
   components: {

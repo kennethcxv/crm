@@ -2,7 +2,14 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import CreateContactListForm from "./CreateContactListForm";
 import { useState } from "react";
-
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 // Steps
 // We want to make it so when the user clicks on Add Contact
 // On the right hand side a panel opens up and shows the form. On the form we can fill out the information
@@ -71,19 +78,70 @@ const ContactList = () => {
           />
         </Stack>
       </Stack>
-      {inputsArr.map((items) => {
-        return (
-          <>
-            <p>{items.email}
-             {items.firstName}
-            {items.lastName} 
-            {items.phoneNumber}
-            {items.companyName}
-            {items.lifeCycleStage}
-            {items.contactOwner}</p>
-          </>
-        );
-      })}
+      <TableContainer sx={{ display: "flex", justifyContent: "center" }}>
+        <Table
+          sx={{
+            border: 2,
+            borderColor: "tableBorder.primary",
+            width: "94%",
+            mt: 5,
+            bgcolor: "tableBackground.primary",
+          }}
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ color: "text.secondary" }}>EMAIL</TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>FIRST NAME</TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>LAST NAME</TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                PHONE NUMBER
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                COMPANY NAME
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                LIFE CYCLE STAGE
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                CONTACT OWNER
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>NOTES</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody sx={{ bgcolor: "background.default" }}>
+            {inputsArr.map((items) => {
+              return (
+                <TableRow>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.email}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.firstName}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.lastName}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.phoneNumber}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.companyName}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.lifeCycleStage}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.contactOwner}
+                  </TableCell>
+                  <TableCell sx={{ color: "textLinks.primary" }}>
+                    {items.notes}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 };

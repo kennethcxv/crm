@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { useState } from "react";
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 // We make an input state vaiable for each then push it into the array and show it
 
@@ -18,10 +18,11 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 // We need to create input validation
 // What we need: We need input validation for when the user doesnt fill out a field
 // Step 1: We create a state variable since we are changing the UI
-// Step 2: We 
+// Step 2: We
 
-const CreateContactListForm = ({open, onClose, onAddContact}) => {
-  const initialInputs = { // we set it to initial inputs so we can clear the inputs after being used
+const CreateContactListForm = ({ open, onClose, onAddContact }) => {
+  const initialInputs = {
+    // we set it to initial inputs so we can clear the inputs after being used
     email: "",
     firstName: "",
     lastName: "",
@@ -29,17 +30,18 @@ const CreateContactListForm = ({open, onClose, onAddContact}) => {
     companyName: "",
     lifeCycleStage: "",
     contactOwner: "",
-    notes:"",
+    notes: "",
   };
 
   const [inputs, setInputs] = useState(initialInputs);
-  const [inputValidation,setInputValidation] = useState({ // State Variable that holds each input with a bool
+  const [inputValidation, setInputValidation] = useState({
+    // State Variable that holds each input with a bool
     email: false,
-    firstName:false,
-    lastName:false,
-    companyName:false,
-    contactOwner:false,
-  })
+    firstName: false,
+    lastName: false,
+    companyName: false,
+    contactOwner: false,
+  });
 
   const textStyling = {
     textAlign: "left",
@@ -53,38 +55,39 @@ const CreateContactListForm = ({open, onClose, onAddContact}) => {
     "& .MuiInputBase-input": { color: "black" }, // All inputs while typed are colored black
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const isValid = handleInputValidation();
-  if (!isValid) return;
-  onAddContact(inputs);
-  setInputs(initialInputs);
-  onClose();
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValid = handleInputValidation();
+    if (!isValid) return;
+    onAddContact(inputs);
+    setInputs(initialInputs);
+    onClose();
+  };
 
   const handleInputValidation = () => {
-    let newErrors = { // We create an Object that has the 
+    let newErrors = {
+      // We create an Object that has the
       email: inputs.email === "",
       firstName: inputs.firstName === "",
       lastName: inputs.lastName === "",
       companyName: inputs.companyName === "",
       contactOwner: inputs.contactOwner === "",
+    };
+
+    setInputValidation(newErrors);
+
+    if (
+      newErrors.email ||
+      newErrors.firstName ||
+      newErrors.lastName ||
+      newErrors.companyName ||
+      newErrors.contactOwner
+    ) {
+      return false;
     }
+    return true;
+  };
 
-    setInputValidation(newErrors)
-
-if (
-  newErrors.email ||
-  newErrors.firstName ||
-  newErrors.lastName ||
-  newErrors.companyName ||
-  newErrors.contactOwner
-) {
-  return false;
-}
-return true;
-  }
-  
   return (
     //Anchor is a prop which controls the direction the sidebar opens
     <>
@@ -97,16 +100,21 @@ return true;
         {/* We are assigning isDrawerOpen called open */}
         {/* Everything in here is the drawer content */}
         <Box>
-          <Box pt={2} pb={2} sx={{ display:"flex", justifyContent:"space-between", backgroundColor: "primary.main" }}>
+          <Box
+            pt={2}
+            pb={2}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "primary.main",
+            }}
+          >
             <Typography sx={{ px: 5 }} variant="h6" color="white">
               Create Contact
             </Typography>
-            <IconButton sx={{mr:4}} onClick={onClose}>
-                <CloseOutlinedIcon />
+            <IconButton sx={{ mr: 4 }} onClick={onClose}>
+              <CloseOutlinedIcon />
             </IconButton>
-
-
-            
           </Box>
           <Stack
             sx={{
@@ -121,7 +129,7 @@ return true;
                 fontWeight: 600,
                 justifyContent: "right",
                 direction: "row",
-                mr:3,
+                mr: 3,
               }}
             >
               Edit this form
@@ -140,7 +148,6 @@ return true;
                   type="email"
                   error={inputValidation.email}
                   helperText={inputValidation.email ? "Email is required" : ""}
-
                   onChange={(e) =>
                     setInputs({ ...inputs, email: e.target.value })
                   }
@@ -154,7 +161,9 @@ return true;
                   sx={TextFieldStyling}
                   value={inputs.firstName}
                   error={inputValidation.firstName}
-                  helperText={inputValidation.firstName ? "First Name is required" : ""}
+                  helperText={
+                    inputValidation.firstName ? "First Name is required" : ""
+                  }
                   onChange={(e) =>
                     setInputs({ ...inputs, firstName: e.target.value })
                   }
@@ -168,8 +177,9 @@ return true;
                   sx={TextFieldStyling}
                   value={inputs.lastName}
                   error={inputValidation.lastName}
-                  helperText={inputValidation.lastName ? "Last Name is required" : ""}
-
+                  helperText={
+                    inputValidation.lastName ? "Last Name is required" : ""
+                  }
                   onChange={(e) =>
                     setInputs({ ...inputs, lastName: e.target.value })
                   }
@@ -183,7 +193,6 @@ return true;
                   type="tel"
                   sx={TextFieldStyling}
                   value={inputs.phoneNumber}
-
                   onChange={(e) =>
                     setInputs({ ...inputs, phoneNumber: e.target.value })
                   }
@@ -197,8 +206,11 @@ return true;
                   sx={TextFieldStyling}
                   value={inputs.companyName}
                   error={inputValidation.companyName}
-  helperText={inputValidation.companyName ? "Company Name is required" : ""}
-
+                  helperText={
+                    inputValidation.companyName
+                      ? "Company Name is required"
+                      : ""
+                  }
                   onChange={(e) =>
                     setInputs({ ...inputs, companyName: e.target.value })
                   }
@@ -211,7 +223,6 @@ return true;
                   variant="outlined"
                   sx={TextFieldStyling}
                   value={inputs.lifeCycleStage}
-                  
                   onChange={(e) =>
                     setInputs({ ...inputs, lifeCycleStage: e.target.value })
                   }
@@ -225,8 +236,11 @@ return true;
                   sx={TextFieldStyling}
                   value={inputs.contactOwner}
                   error={inputValidation.contactOwner}
-  helperText={inputValidation.contactOwner ? "Contact Owner is required" : ""}
-
+                  helperText={
+                    inputValidation.contactOwner
+                      ? "Contact Owner is required"
+                      : ""
+                  }
                   onChange={(e) =>
                     setInputs({ ...inputs, contactOwner: e.target.value })
                   }
@@ -244,10 +258,22 @@ return true;
                   }
                 />
               </Stack>
-              <Button sx={{my:5, mr:3, backgroundColor:"primary.main", color:"primary.contrastText"}} variant="contained" type="submit">Create Contact</Button>
-              <Button sx={{my:5}} onClick={onClose} variant="outlined">Cancel</Button>
+              <Button
+                sx={{
+                  my: 5,
+                  mr: 3,
+                  backgroundColor: "primary.main",
+                  color: "primary.contrastText",
+                }}
+                variant="contained"
+                type="submit"
+              >
+                Create Contact
+              </Button>
+              <Button sx={{ my: 5 }} onClick={onClose} variant="outlined">
+                Cancel
+              </Button>
             </form>
-
           </Box>
         </Box>
       </Drawer>
